@@ -43,7 +43,7 @@ $re_sall = mysqli_fetch_assoc($que);
         <div class="row">
           <div class="col-12">
             <h2 class="page-header">
-              ใบเสร็จ<br>
+              ใบเสร็จรับเงิน<br>
               <img src="backend/img/ru1.png" width="85" height="85"></i>ร้านค้าสหกิจชุมชนบ้านพวนผ้ามัดหมี่
               <small class="float-right">Date: <?php echo changdate($re_sall["order_date"]); ?></small>
 
@@ -165,7 +165,9 @@ WHERE `order_id`='" . $_GET["order_id"] . "'";
               </center>
               </th>
               </tr>
-
+                  <button id="print-button" class="d-print-none btn btn-primary ">
+                    พิมพ์
+                  </button>
             </div>
           </div>
           <!-- /.col -->
@@ -177,7 +179,9 @@ WHERE `order_id`='" . $_GET["order_id"] . "'";
     <!-- ./wrapper -->
 
     <script type="text/javascript">
-      // window.addEventListener("load", window.print());
+      const printButton = document.getElementById('print-button');
+
+      printButton.addEventListener("click", () => window.print());
     </script>
 </body>
 

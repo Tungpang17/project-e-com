@@ -100,9 +100,9 @@ $(function(){
         <li class="nav-item">
           <a href="pomotion.php" class="nav-link">สินค้าขายดี3อันดับ</a>
         </li>
-        <!-- <li class="nav-item">
+        <li class="nav-item">
           <a href="pomotion.php" class="nav-link">การแจ้งชำระเงิน</a>
-        </li> -->
+        </li>
         <li class="nav-item">
           <a href="transport.php" class="nav-link">การจัดส่งสินค้า</a>
         </li>
