@@ -45,7 +45,13 @@ $re_sall = mysqli_fetch_assoc($que);
             <h2 class="page-header">
               ใบเสร็จรับเงิน<br>
               <img src="img/ru1.png" width="85" height="85"></i>ร้านค้าสหกิจชุมชนบ้านพวนผ้ามัดหมี่
-              <small class="float-right">Date: <?php echo changdate($re_sall["order_date"]); ?></small>
+              <?php 
+              if (!isset($re_sall["order_date"]) || empty($re_sall["order_date"])) {
+              echo "ไม่พบวันที่";
+              } else {
+              echo "วันที่ก่อนแปลง: " . $re_sall["order_date"]; 
+             }
+             ?>
 
             </h2>
           </div>
@@ -75,7 +81,7 @@ $re_sall = mysqli_fetch_assoc($que);
           <div class="col-sm-5">
             ถึง
             <address style="font-size: 20">
-              <strong><?php echo $re_sall["m_fullname"]; ?> <?php echo $re_sall["pay_address"]; ?></strong><br>
+              <strong>มาระ</strong><br>
             </address>
           </div>
         </div>

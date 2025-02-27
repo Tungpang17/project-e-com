@@ -98,7 +98,7 @@ $(function(){
           <a href="order.php" class="nav-link">การสั่งซื้อของฉัน</a>
         </li>
         <li class="nav-item">
-          <a href="pomotion.php" class="nav-link">สินค้าขายดี3อันดับ</a>
+          <a href="pomotion.php" class="nav-link">สินค้าขายดี5อันดับ</a>
         </li>
         <li class="nav-item">
           <a href="pomotion.php" class="nav-link">การแจ้งชำระเงิน</a>

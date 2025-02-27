@@ -51,6 +51,7 @@ LEFT JOIN `product` ON `taka`.`product_id`=`product`.`product_id`
       LEFT JOIN `product` ON `taka`.`product_id`=`product`.`product_id`
       
        WHERE 1 AND `m_id`='" . $_SESSION["otop"]["ID"] . "' ";
+    
         $que = mysqli_query($con, $sql);
         while ($re = mysqli_fetch_assoc($que)) {
         ?>
@@ -90,11 +91,11 @@ LEFT JOIN `product` ON `taka`.`product_id`=`product`.`product_id`
     <a href="confrim_order.php"><button type="button" class="btn btn-primary">สั่งซื้อ</button></a>
     <a href="index.php"><button type="button" class="btn btn-secondary">เลือกสินค้าเพิ่มเติม</button></a>
   </div>
-  <!--/.Main column-->
+  <!-- /.Main column -->
 
 </div>
 </div>
-<!--/.Main layout-->
+<!-- /.Main layout -->
 
 </main>
 

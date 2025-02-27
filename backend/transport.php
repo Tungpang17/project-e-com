@@ -11,7 +11,7 @@ include("head.php");
 
 <div class="container">
 
-  <h3><img src="img/11.png" width="50" height="50"> รายการการจัดส่ง <a href="https://ems.thaiware.com/" target="_blank"><button type="button" class="btn btn-primary">ตรวจสอบการขนส่ง</button></a>  
+  <h3><img src="img/11.png" width="50" height="50"> รายการการจัดส่ง  
 </h3> 
   
 <div id="button1">
