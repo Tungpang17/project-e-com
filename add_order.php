@@ -34,5 +34,5 @@ if(mysqli_num_rows($que)!=0){
    mysqli_query($con,$sql_del);
 }
 
-header("location:payment.php?order_id=".$orser_id);
+header("location:invoice-print.php?order_id=".$orser_id);
 ?>

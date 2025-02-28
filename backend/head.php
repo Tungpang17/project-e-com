@@ -198,6 +198,12 @@ $qty=mysqli_num_rows($que);
           <a class="nav-link <?php if(basename($_SERVER['PHP_SELF'])=='tailors.php') echo "active";?>" href="tailors.php">สมาชิกกลุ่มทอผ้า</span>
           </a>
         </li>
+         
+        <li class="nav-item">
+          <center><a href="tailor-records.php"><img src="img/11.png" width="50" height="50"></a></center>
+          <a class="nav-link <?php if(basename($_SERVER['PHP_SELF'])=='tailors.php') echo "active";?>" href="tailor-records.php">การทอผ้า</span>
+          </a>
+        </li>
         <!-- <li class="nav-item">
           <center><a href="order.php"><img src="img/3.png" width="50" height="50"></a></center>
           <a class="nav-link <?php if(basename($_SERVER['PHP_SELF'])=='order.php') echo "active";?>" href="order.php">การสั่งซื้อ</a>

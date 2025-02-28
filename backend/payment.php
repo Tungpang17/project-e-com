@@ -23,7 +23,7 @@ include("head.php");
     <tr>
       
       <th scope="col">รหัสแจ้งชำระ</th>
-      <th scope="col">เลขที่ออเดอร์</th>
+      <th scope="col">เลขใบสั่งซื้อ</th>
       <th scope="col">ReferID</th>
       <th scope="col">จำนวนเงิน</th>
       <th scope="col">วันเวลาทำการ</th>

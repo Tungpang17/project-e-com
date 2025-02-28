@@ -81,7 +81,7 @@ $re_sall = mysqli_fetch_assoc($que);
           <div class="col-sm-5">
             ถึง
             <address style="font-size: 20">
-              <strong>มาระ</strong><br>
+              <strong></strong><br>
             </address>
           </div>
         </div>
@@ -171,7 +171,9 @@ WHERE `order_id`='" . $_GET["order_id"] . "'";
               </center>
               </th>
               </tr>
-
+                  <button id="print-button" class="d-print-none btn btn-primary ">
+                    พิมพ์
+                  </button>
             </div>
           </div>
           <!-- /.col -->
@@ -183,7 +185,9 @@ WHERE `order_id`='" . $_GET["order_id"] . "'";
     <!-- ./wrapper -->
 
     <script type="text/javascript">
-      // window.addEventListener("load", window.print());
+      const printButton = document.getElementById('print-button');
+
+      printButton.addEventListener("click", () => window.print());  
     </script>
 </body>
 

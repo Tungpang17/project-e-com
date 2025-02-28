@@ -111,40 +111,13 @@ include("head.php");
                                      </select>
                                  </div>
                              </div>
+                             
+                             <hr />
                              <div class="mb-3 row">
-                                 <label class="col-sm-4 col-form-label" style="font-size: 20px">เลือกสถานประกอบการ
-                                     :</label>
+                                 <label class="col-sm-4 col-form-label" style="font-size: 20px">อัพโหลดรูปภาพ:</label>
                                  <div class="col-sm-5">
-                                     <select class="form-select" aria-label="Default select example" name="com_id"
-                                         id="com_id">
-                                     </select>
-                                 </div>
-                             </div>
-                             <hr>
-                             <div class="mb-3 row">
-
-                                 <div class="col-sm-5">
-                                     <div class="form-check">
-                                         <input class="form-check-input" type="checkbox" value="1" id="pro" name="pro">
-                                         <label class="form-check-label" for="defaultCheck1">
-                                             สินค้าโปรโมชัน
-                                         </label>
-                                     </div>
-                                 </div>
-                                 <div class="mb-3 row">
-                                     <label class="col-sm-4 col-form-label" style="font-size: 20px">เริ่มโปรโมชัน
-                                         :</label>
-                                     <div class="col-sm-5">
-                                         <input class="form-control" type="datetime-local" name="pro_s" id="pro_s">
-                                     </div>
-                                 </div>
-
-                                 <div class="mb-3 row">
-                                     <label class="col-sm-4 col-form-label" style="font-size: 20px">สิ้นสุดโปรโมชัน
-                                         :</label>
-                                     <div class="col-sm-5">
-                                         <input class="form-control" type="datetime-local" name="pro_e" id="pro_e">
-                                     </div>
+                                     <input class="form-control" type="file" name="picture"
+                                         id="picture">
                                  </div>
                              </div>
 
@@ -155,7 +128,7 @@ include("head.php");
              </div>
          </div>
          <center>
-             <button type="button" class="btn btn-danger" onclick="show_pic()">จัดการรูปภาพ</button>
+            
              <button type="button" class="btn btn-success" onclick="add()">เพิ่มสินค้า</button>
              <button type="button" class="btn btn-danger" onclick="de()">ลบสินค้า</button>
              <button type="button" class="btn btn-warning" onclick="up()">แก้ไขสินค้า</button>
@@ -353,7 +326,7 @@ function s(){
              condition: ''
          }, function(data) {
              obj = JSON.parse(data);
-             console.log(obj);
+             
 
              $("#type_id").html('<option selected>เลือกหมวดหมู่สินค้า</option>');
              $("#button1").html(
@@ -377,7 +350,7 @@ function s(){
              condition2: ''
          }, function(data) {
              obj = JSON.parse(data);
-             console.log(obj);
+             
 
              $("#com_id").html('<option selected>เลือก</option>');
              for (var i = 0; i < obj.length; i++) {
@@ -399,6 +372,7 @@ function s(){
              search: search
          }, function(data) {
              obj = JSON.parse(data);
+             console.log(data)
              console.log(obj);
              $("#tbody1").html('');
              for (var i = 0; i < obj.length; i++) {
@@ -415,7 +389,7 @@ function s(){
      function search() {
 
          var search = document.getElementById("search_product").value
-         console.log(search)
+         console.log('Search', search)
          show_tbody1(type_id, search);
      }
 

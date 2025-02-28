@@ -39,7 +39,7 @@ include("head.php");
       while($re=mysqli_fetch_assoc($que)){
       ?>
       
-    <>
+    <span>
       <th scope="row"><?php echo @++$i;?></th>
       <td><?php echo $re["order_date"]." ".$re["order_time"];?></td>
       <td><?php echo number_format($re["order_tatal"],2);?></td>
@@ -47,7 +47,7 @@ include("head.php");
           <?php if($re["pay_status"]==0 AND $re["pay_status"]!=""){?>
             <span class="badge badge-primary">รอการตรวจสอบ</span>
         <?php }elseif($re["pay_status"]==""){?>
-                <a href="payment.php?order_id=<?php echo $re["order_id"];?>"><span class="badge badge-warning">ยังไม่ชำระเงิน</span></a>
+                <span><span class="badge badge-warning">ยังไม่ชำระเงิน</span></span>
         <?php }elseif($re["pay_status"]==1 && $re["tra_track"]==""){?>
                 <span class="badge badge-warning">ชำระเงินสำเร็จ รอการจัดส่ง</span>
         <?php }elseif($re["pay_status"]==1 && $re["tra_track"]!="" && $re["tra_status"]!=1 ){?>

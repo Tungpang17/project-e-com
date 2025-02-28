@@ -22,7 +22,6 @@ if ($_POST["com_id"] != "") {
 	$sql .= " ORDER BY `product`.`Qty` ASC";
 }
 
-
 $que = mysqli_query($con, $sql);
 if ($que->num_rows <= 0) {
 	$array = array();

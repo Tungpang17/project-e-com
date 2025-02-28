@@ -1,0 +1,12 @@
+@font-face {
+  font-family: 'Anuphan';
+  src: url('../fonts/Anuphan.ttf');
+}
+
+body {
+  font-family: 'Anuphan', sans-serif;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}

@@ -16,6 +16,15 @@ while ($row = mysqli_fetch_assoc($result)) {
 <div class="col-lg-8">
     <h1>สมาชิกกลุ่มทอผ้า</h1>
     <div class="row">
+        <div class="col-6">
+            <td><input id="search_product" type="text" class="form-control" style="width:230px"
+                    placeholder="โปรดใส่ชื่อสมาชิก"> </td>
+        </div>
+        <div class="col-6">
+            <button class="btn btn-warning" type="submit" onclick="search();">Search</button>
+        </div>
+    </div>
+    <div class="row">
         <table class="table">
             <thead>
                 <tr>
@@ -27,26 +36,8 @@ while ($row = mysqli_fetch_assoc($result)) {
                     <th>วันที่สมัครสมาชิก</th>
                 </tr>
             </thead>
-            <tbody>
-                <?php foreach ($rows as $row) { ?>
-                    <tr>
-                        <td>
-                            <?php echo $row["id"] ?>
-                        </td>
-                        <td>
-                            <?php echo $row["name"] ?>
-                        </td>
-                        <td>
-                            <?php echo $row["address"] ?>
-                        </td>
-                        <td>
-                            <?php echo $row["phone_number"] ?>
-                        </td>
-                        <td>
-                            <?php echo $row["created_at"] ?>
-                        </td>
-                    </tr>
-                <?php } ?>
+            <tbody id="tailor-tbody">
+
             </tbody>
         </table>
         </divclass>
@@ -170,6 +161,47 @@ while ($row = mysqli_fetch_assoc($result)) {
                 console.error(await response.text());
             }
         }
+
+        async function search() {
+            try {
+                const search = `%${document.getElementById('search_product').value ?? ''}%`;
+
+                const response = await fetch(`search_tailors.php?search=${search}`)
+
+                const data = await response.json();
+
+                const container = document.getElementById('tailor-tbody');
+
+                container.innerHTML = '';
+
+                for (const d of data) {
+                    const row = document.createElement('tr')
+
+                    row.innerHTML = `
+                         <td>
+                            ${d.id}
+                        </td>
+                        <td>
+                            ${d.name}
+                        </td>
+                        <td>
+                            ${d.address}
+                        </td>
+                        <td>
+                            ${d.phone_number}
+                        </td>
+                        <td>
+                            ${d.created_at}
+                        </td>
+                    `;
+
+                    container.appendChild(row);
+                }
+
+            } catch (e) {}
+        }
+
+        search();
     </script>
     <?php
     include("foot.php");

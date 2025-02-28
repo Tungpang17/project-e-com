@@ -22,7 +22,7 @@ include("head.php");
   <thead>
     <tr>
       
-      <th scope="col">เลขที่ออเดอร์</th>
+      <th scope="col">เลขใบสั่งซื้อ</th>
       <th scope="col">บริษัทขนส่ง</th>
       <th scope="col">เลข Tracking</th>
       <th scope="col">วันที่จัดส่ง</th>
