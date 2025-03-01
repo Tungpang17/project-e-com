@@ -1,16 +1,15 @@
 <?php
 include("conf/mariadb.php");
-$sql="INSERT INTO `transport`(`order_id`, `tra_name`, `tra_track`, `tra_date`, `tra_time`) VALUES (
-'".$_POST["order_id"]."',
-'".$_POST["tra_name"]."',
-'".$_POST["tra_track"]."',
-'".$_POST["tra_date"]."',
-'".$_POST["tra_time"]."'
-)";
+$sql =
+  "UPDATE transport 
+  SET 
+  tra_name='" . $_POST["tra_name"] . "',
+  tra_track='" . $_POST["tra_track"] . "',
+  tra_date='" . $_POST["tra_date"] . "',
+  tra_time='" . $_POST["tra_time"] . "'
+  WHERE tra_id='" . $_POST["tra_id"] . "'";
 
-$que=mysqli_query($con,$sql);
-
-
+$que = mysqli_query($con, $sql);
 
 echo '{"status":"1"}';
 ?>

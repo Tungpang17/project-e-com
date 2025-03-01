@@ -63,18 +63,34 @@ while ($row = mysqli_fetch_assoc($result)) {
                         <div class="mb-3 row">
                             <label class="col-sm-3 col-form-label" style="font-size: 20px">ที่อยู่สมาชิก:</label>
                             <div class="col-sm-7">
-                                <textarea class="form-control" id="address" name="address" placeholder="ที่อยู่สมาชิก" rows="3"></textarea>
+                                <textarea class="form-control" id="address" name="address" placeholder="ที่อยู่สมาชิก"
+                                    rows="3"></textarea>
                             </div>
                         </div>
 
                         <div class="mb-3 row">
                             <label class="col-sm-3 col-form-label" style="font-size: 20px">เบอร์โทร:</label>
                             <div class="col-sm-7">
-                                <input class="form-control" type="text" placeholder="ใส่เบอร์โทร" name="phone_number" id="phone_number">
+                                <input class="form-control" type="text" placeholder="ใส่เบอร์โทร" name="phone_number"
+                                    id="phone_number">
                             </div>
                         </div>
                     </div>
 
+                </div>
+
+                <div>
+                    <div class="col-md-6">
+                        <div class="card-body">
+                            <br>
+                            <div class="mb-3 row">
+                                <label class="col-sm-3 col-form-label" style="font-size: 20px">รูปภาพ:</label>
+                                <div class="col-sm-7">
+                                    <input class="form-control" type="file" name="image" id="image" accept="image/jpeg">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <center>
                     <button type="button" class="btn btn-success" onclick="addTailor()">เพิ่ม</button>
@@ -93,6 +109,7 @@ while ($row = mysqli_fetch_assoc($result)) {
             formData.append('name', document.getElementById('name').value)
             formData.append('address', document.getElementById('address').value)
             formData.append('phone_number', document.getElementById('phone_number').value)
+            formData.append('image', document.getElementById('image').files[0])
 
             const response = await fetch('../api/create_tailor.php', {
                 method: 'POST',
@@ -138,6 +155,7 @@ while ($row = mysqli_fetch_assoc($result)) {
             formData.append('name', document.getElementById('name').value)
             formData.append('address', document.getElementById('address').value)
             formData.append('phone_number', document.getElementById('phone_number').value)
+            formData.append('image', document.getElementById('image').files[0])
 
             const id = prompt('โปรดระบุ ID สมาชิก');
 
@@ -178,6 +196,9 @@ while ($row = mysqli_fetch_assoc($result)) {
                     const row = document.createElement('tr')
 
                     row.innerHTML = `
+                        <td>
+                            <img src="../public/images/uploads/tailors/${d.id}.jpg" alt="" style="width: 64px; height: 64px;">
+                        </td>
                          <td>
                             ${d.id}
                         </td>
@@ -198,7 +219,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                     container.appendChild(row);
                 }
 
-            } catch (e) {}
+            } catch (e) { }
         }
 
         search();

@@ -43,6 +43,16 @@ $statement->bind_param('sssi', $data['name'], $data['address'], $data['phone_num
 // Inserts tailors.
 $result = $statement->execute();
 
+if ($result && $_FILES["image"]["name"]) {
+  $target_dir = "./../public/images/uploads/tailors";
+  $target_file = $target_dir . basename($id . strtolower(pathinfo($_FILES["image"]["name"], PATHINFO_EXTENSION)));
+  $temp = explode(".", $_FILES["image"]["name"]);
+  $file_name = $id . '.' . end($temp);
+  // echo $target_dir . "/".$file_name;
+  move_uploaded_file($_FILES["image"]["tmp_name"], $target_dir . "/" . $file_name);
+}
+
+
 if ($result) {
   echo 'Success';
 } else {
