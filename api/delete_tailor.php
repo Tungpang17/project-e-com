@@ -27,6 +27,12 @@ $statement->bind_param('i', $id);
 // Inserts tailors.
 $result = $statement->execute();
 
+try {
+  unlink('./../public/images/uploads/tailors/' . $id . '.jpg');
+} catch (Exception $error) {
+  echo $error;
+}
+
 if ($result) {
   echo 'Success';
 } else {
