@@ -9,26 +9,41 @@ include("head.php");
 
 
 
-<div class="container">
+<div>
 
   <h3><img src="img/11.png" width="50" height="50"> รายการสั่งซื้อ
 
   </h3>
 
-  <div id="button1">
 
+  <div>
+    <button type="button" class="btn btn-primary" onclick="setStatus()">ทั้งหมด</button>
+    <button type="button" class="btn btn-secondary" onclick="setStatus(0)">ยังไม่ชำระเงิน</button>
+    <button type="button" class="btn btn-success" onclick="setStatus(1)">ชำระเงินแล้ว</button>
   </div>
+
+  <div>
+    <form id="date-form" action="order.php" method="get">
+      <label for="start_date">เริ่มต้น</label>
+      <input type="date" id="start_date" name="start_date" value="<?php echo $_GET["start_date"]; ?>">
+      <label for="end_date">สิ้นสุด</label>
+      <input type="date" id="end_date" name="end_date" value="<?php echo $_GET["end_date"]; ?>">
+      <button type="submit">ค้นหา</button>
+    </form>
+  </div>
+
   <br>
   <table id="example" class="table" class="table table-striped table-bordered" style="width:100%">
     <thead>
       <tr>
 
-        <th scope="col">รหัสสินค้า</th>
-        <th scope="col">ชื่อสินค้า</th>
-        <th scope="col">ประเภทสินค้า</th>
-        <th scope="col">คงเหลือ</th>
-        <th scope="col">คงคลัง</th>
-        <th scope="col">พร้อมขาย</th>
+        <th scope="col">รหัสสั่งซื้อ</th>
+        <th scope="colr">รหัสลูกค้า</th>
+        <th scope="col">ชื่อลูกค้า</th>
+        <th scope="col">ที่อยู่จัดส่ง</th>
+        <th scope="col">ราคารวม</th>
+        <th scope="col">วันที่สั่งซื้อ</th>
+        <th scope="col">สถานะ</th>
         <!-- <th scope="col">แก้ไข</th> -->
       </tr>
     </thead>
@@ -38,21 +53,52 @@ include("head.php");
 
 
       <?php
-      $sql = "SELECT `product`.*,`type` .*,`stock2`.`qty` FROM `product`
-LEFT JOIN `type` ON `product`.`type_id`=`type`.`type_id`
-LEFT JOIN `stock2` ON `product`.`product_id`=`stock2`.`product_id`";
+      $status = $_GET["status"];
+      $status_sql = "";
+      if ($status == "0") {
+        $status_sql = "`payments`.pay_status=0";
+      } else if ($status == "1") {
+        $status_sql = "AND `payments`.pay_status=1";
+      }
+
+      $start_date = validateDate($_GET["start_date"]) ? $_GET["start_date"] : "1970-01-01";
+      $end_date = validateDate($_GET["end_date"]) ? $_GET["end_date"] : date("Y-m-d");
+      $date_sql =
+        "AND `orders`.`order_date` BETWEEN '$start_date' AND '$end_date'";
+
+      function validateDate($date)
+      {
+        $d = DateTime::createFromFormat("Y-m-d", $date);
+        return $d && strtolower($d->format('Y-m-d')) === strtolower($date);
+      }
+
+      $sql =
+        "SELECT 
+        `orders`.*,
+        `member`.`m_fullname`,
+        `member`.`address`,
+        `payments`.`pay_status`
+        FROM `orders`
+        LEFT JOIN `member` ON `orders`.`m_id`=`member`.`m_id`
+        LEFT JOIN `payments` ON `orders`.`order_id`=`payments`.`order_id`
+        WHERE 1
+        $date_sql
+        $status_sql
+        ";
       $que = mysqli_query($con, $sql);
       while ($re = mysqli_fetch_assoc($que)) {
         ?>
+
         <tr>
-          <td><?php echo $re["product_id"]; ?></td>
-          <td><?php echo $re["Product_name"]; ?></td>
-          <td><span class="badge badge-info" style="font-size: 18"><?php echo $re["type_name"]; ?></span></td>
-          <td><?php echo $re["Qty"]; ?></td>
-          <td><?php echo $re["qty"]; ?></td>
-          <td><?php echo $re["Qty"]; ?></td>
-
-
+          <td><?php echo $re["order_id"]; ?></td>
+          <td><?php echo $re["m_id"]; ?></td>
+          <td><?php echo $re["m_fullname"] ?></td>
+          <td><?php echo $re["address"] ?></td>
+          <td><?php echo $re["order_tatal"] ?></td>
+          <td><?php echo $re["order_date"] ?></td>
+          <td>
+            <?php echo $re["pay_status"] == 0 ? 'ยังไม่ได้ชำระเงิน' : $re["pay_status"] == 1 ? 'ชำระเงินแล้ว' : 'ไม่ทราบสถานะ' ?>
+          </td>
 
           <!-- <td><button type="button" class="btn btn-Warning" style="font-size: 14" 
             data-toggle="modal" data-target="#staticBackdrop" onmousedown="form1.product_id.value='<?php echo $re["product_id"]; ?>';form1.Product_name.value='<?php echo $re["Product_name"]; ?>';form1.qty.value='<?php echo $re["qty"]; ?>'">
@@ -127,6 +173,23 @@ LEFT JOIN `stock2` ON `product`.`product_id`=`stock2`.`product_id`";
     $("#Qty").val(obj[id].Qty);
   }
 
+  function setStatus(status) {
+    const url = new URL(window.location.href);
+    if (status === undefined) {
+      url.searchParams.delete('status');
+    } else {
+      url.searchParams.set('status', status);
+    }
+    window.location = url.href;
+  }
+
+  document.getElementById('date-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    const url = new URL(window.location.href);
+    url.searchParams.set('start_date', document.getElementById('start_date').value);
+    url.searchParams.set('end_date', document.getElementById('end_date').value);
+    window.location = url.href;
+  });
 </script>
 
 
