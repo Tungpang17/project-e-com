@@ -80,10 +80,12 @@ WHERE `payments`.pay_status=1
           </td>
 
           <td>
-            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
-              onclick="modalTransportId = <?php echo $re['tra_id']; ?>">
-              จัดส่ง
-            </button>
+            <?php if ($re["tra_name"] == "" || $re["tra_track"] == "" || $re["tra_date"] == "") { ?>
+              <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                onclick="modalTransportId = <?php echo $re['tra_id']; ?>">
+                จัดส่ง
+              </button>
+            <?php } ?>
           </td>
         </tr>
 
