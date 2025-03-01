@@ -26,7 +26,7 @@ include("head.php");
       <th scope="col">บริษัทขนส่ง</th>
       <th scope="col">เลข Tracking</th>
       <th scope="col">วันที่จัดส่ง</th>
-      <th scope="col">เวลา</th>
+      <!-- <th scope="col">เวลา</th> -->
       <th scope="col">สถานะ</th>
     </tr>
   </thead>
@@ -112,12 +112,12 @@ while($re=mysqli_fetch_assoc($que)){
                     <input class="form-control" type="date"  id="tra_date" name="tra_date">
                   </div>
                 </div>
-                <div class="mb-3 row">
+                <!-- <div class="mb-3 row">
                   <label class="col-sm-5 col-form-label" style="font-size: 20px">เวลาจัดส่ง :</label>
                   <div class="col-sm-7">
                     <input class="form-control" type="time"  name="tra_time" id="tra_time"></label>
                   </div>
-                </div>
+                </div> -->
               </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-success" onclick="up()">บันทึก</button>

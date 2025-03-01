@@ -35,62 +35,46 @@
 
 
          <tbody id="tbody1">
+       <?php
+        $sql = "SELECT * ,CONCAT(`orders`.order_date,' ',`orders`.order_time) AS `d_s`,sum(pro_amount) AS sum_amount FROM `order_detail` 
+    LEFT JOIN `orders` ON `order_detail`.`order_id` = `orders`.`order_id`
+    LEFT JOIN `product`ON `order_detail`.product_id=`product`.product_id
+    LEFT JOIN `member` ON `member`.`m_id`=`orders`.`m_id`
+    WHERE 1 ";
 
+        if ($_GET["date_s"] != "" && $_GET["date_e"] != "") {
+          // $sql.=" AND (order_date >='".$_GET["date_s"]."' AND order_date <='".$_GET["date_e"]."')";    
+          $sql .= " AND order_date  BETWEEN '" . $_GET["date_s"] . "' AND '" . $_GET["date_e"] . "' ";
+        }
+        $sql .= "    GROUP BY `order_detail`.product_id , orders.order_date ";
+        $que = mysqli_query($con, $sql);
+        while ($re = mysqli_fetch_assoc($que)) {
 
-         </tbody>
+        ?>
+         <tr>
+
+           <td><?php echo $re["product_id"]; ?></td>
+           <td><?php echo $re["m_fullname"]; ?></td>
+           <td><?php echo $re["Product_name"]; ?></td>
+          
+           
+         
+           <td><?php echo $re["order_date"]; ?></td>
+         </tr>
+
+       <?php } ?>
+     </tbody>
+
      </table>
  </div>
 
 
- <script>
-     function show_button1() {
-         $.post("call_show.php", {
-                 table: 'type',
-                 condition: ''
-             }, function(data) {
-                 obj = JSON.parse(data);
-                 console.log(obj);
+ </table>
 
-                 $("#type_id").html('<option selected>การชำระเงิน</option>');
-                 // $("#button1").html('<button type="button" id="hid" class="btn btn-warning" onclick="show_tbody1(\'\')">ทั้งหมด</button>  ');
-                 // for(var i=0;i<obj.length; i++){
-
-                 $("#button1").html($("#button1").html() + '<button type="button" id="hid" class="btn btn-warning" onclick="show_tbody1(\'' + obj[i].type_id + '\')">' + obj[i].type_name + '</button>  ');
-                 $("#type_id").html($("#type_id").html() + '<option value="' + obj[i].type_id + '">' + obj[i].type_name + '</option>');
-             }
-         );
-     }
-
-     function show_tbody1(type_id) {
-         $.post("call_show.php", {
-             table: 'payment',
-             conditon: type_id
-         }, function(data) {
-             obj = JSON.parse(data);
-             console.log(obj);
-             $("#tbody1").html('');
-             for (var i = 0; i < obj.length; i++) {
-                 $("#tbody1").html($("#tbody1").html() + '<tr onclick="show_click(' + i + ')" style="cursor:pointer"><td>' + obj[i].Pay_id + '</td><td>' + obj[i].Pay_name + '</td><td>' + obj[i].Pay_detail + '</td><td>' + obj[i].Product_Price + '</td><td>' + obj[i].Qty + '</td></tr>');
-             }
-         });
-     }
+ </div>
 
 
-     function show_click(id) {
-         $("#pro_id").val(obj[id].pay_id);
-         $("#pro_name").val(obj[id].order_id);
-         //   $("#pro_de").val(obj[id].Product_detail);
-         //   $("#pro_price").val(obj[id].Product_Price);
-         //   $("#qty").val(obj[id].Qty);
-         //   $("#type_id").val(obj[id].type_id);
-         //   $("#com_id").val(obj[id].com_id);
-         //   $("#com_name").val(obj[id].com_name);
-     }
-     show_button1();
-
-     show_tbody1('');
- </script>
 
  <?php
-    include("foot.php");
-    ?>
+  include("foot.php");
+  ?>
