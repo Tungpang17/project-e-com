@@ -18,63 +18,42 @@
                  <path d="M0 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-1v-2a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v2H2a2 2 0 0 1-2-2V7zm2.5 1a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z" />
              </svg> พิมพ์</button></h3>
 
-     <div id="button1">
+             <table  class="table" cellspacing="0" width="100%">
+  <thead>
+    <tr>
+      
+      <th scope="col">ใบสั่งซื้อสินค้า</th>
+      <th scope="col">ชื่อลูกค้า</th>
+      <!-- <th scope="col">จำนวน</th> -->
+      <th scope="col">วัน/เดือน/ปี/ที่สั่งซื้อ</th>
+      
+    </tr>
+  </thead>
 
-     </div>
-     <br>
-     <table class="table" class="table table-striped table-bordered" style="width:100%">
-         <thead>
-             <tr>
+  <tbody id="tbody1">
+    <?php
+    $sql="SELECT * FROM `payment.php` WHERE 1 ";
 
-                 <th scope="col">เลขใบสั่งซื้อ</th>
-                 <th scope="col">ชื่อลูกค้า</th>
-                 <th scope="col">ราคา</th>
-                 <th scope="col">วันเดือนปี</th>
-             </tr>
-         </thead>
+    if($_GET["date_s"] !="" && $_GET["date_e"] !=""){
+        $sql.=" AND (m_datetime>='".$_GET["date_s"]."' AND m_datetime<='".$_GET["date_e"]."')";    
+    }
+    
+    while($re=mysqli_fetch_assoc($que)){
 
+    ?>
+    
+  <?php echo var_dump($re);?>
+    <tr>
+      
+      <td><?php echo $re["order_id"];?></td>
+      <td><?php echo $re["name"];?></td>
+      <td><?php echo $re["money"];?></td>
+      <td><?php echo $re["datetime"];?></td>
+      <td><?php echo $re["pay_status"];?></td>
+      
+    </tr>
 
-         <tbody id="tbody1">
-       <?php
-        $sql = "SELECT * ,CONCAT(`orders`.order_date,' ',`orders`.order_time) AS `d_s`,sum(pro_amount) AS sum_amount FROM `order_detail` 
-    LEFT JOIN `orders` ON `order_detail`.`order_id` = `orders`.`order_id`
-    LEFT JOIN `product`ON `order_detail`.product_id=`product`.product_id
-    LEFT JOIN `member` ON `member`.`m_id`=`orders`.`m_id`
-    WHERE 1 ";
+<?php }?>
+  </tbody> 
 
-        if ($_GET["date_s"] != "" && $_GET["date_e"] != "") {
-          // $sql.=" AND (order_date >='".$_GET["date_s"]."' AND order_date <='".$_GET["date_e"]."')";    
-          $sql .= " AND order_date  BETWEEN '" . $_GET["date_s"] . "' AND '" . $_GET["date_e"] . "' ";
-        }
-        $sql .= "    GROUP BY `order_detail`.product_id , orders.order_date ";
-        $que = mysqli_query($con, $sql);
-        while ($re = mysqli_fetch_assoc($que)) {
-
-        ?>
-         <tr>
-
-           <td><?php echo $re["product_id"]; ?></td>
-           <td><?php echo $re["m_fullname"]; ?></td>
-           <td><?php echo $re["Product_name"]; ?></td>
-          
-           
-         
-           <td><?php echo $re["order_date"]; ?></td>
-         </tr>
-
-       <?php } ?>
-     </tbody>
-
-     </table>
- </div>
-
-
- </table>
-
- </div>
-
-
-
- <?php
-  include("foot.php");
-  ?>
+</table>

@@ -20,9 +20,9 @@ include("head.php");
 
 <!-- <a class="btn btn-secondary btn-lg btn-block" href="repost_user.php" role="button">รายงานข้อมูลพนักงาน</a> -->
 
-<a class="btn btn-secondary btn-lg btn-block" href="tailors.php" role="button">รายงานข้อมูลสมาชิกกลุ่มทอผ้า</a>
+<a class="btn btn-secondary btn-lg btn-block" href="repost_tailorss.php" role="button">รายงานข้อมูลสมาชิกกลุ่มทอผ้า</a>
 <a class="btn btn-secondary btn-lg btn-block" href="repost_product.php" role="button">รายงานข้อมูลสินค้า</a>
-<a class="btn btn-secondary btn-lg btn-block" href="repost_weaving.php" role="button">รายงานข้อมูลการทอผ้าตามชื่อสมาชิก (วัน/เดือน/ปี)</a>
+<a class="btn btn-secondary btn-lg btn-block" href="repost_tailor-records.php" role="button">รายงานข้อมูลการทอผ้าตามชื่อสมาชิก (วัน/เดือน/ปี)</a>
 
 
 

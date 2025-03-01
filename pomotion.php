@@ -22,6 +22,7 @@ SELECT * FROM (
     LEFT JOIN `propic` ON `propic`.`product_id`  = `product`.`product_id`
 	WHERE `product`.`type_id` = "00003"
     LIMIT 1
+    
  ) as C;
     ';
 
