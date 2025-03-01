@@ -6,6 +6,12 @@
   </div>
 
   <div>
+    <input id="search" type="text" class="form-control" placeholder="ค้นหา...">
+
+    <button class="btn btn-primary" onclick="fetchAndRender()">ค้นหา</button>
+  </div>
+
+  <div>
     <table class="table">
       <thead>
         <tr>
@@ -30,13 +36,15 @@
 </div>
 <script>
   async function fetchAndRender() {
+    const search = document.getElementById('search').value;
+
     const tailorRecordContainer = document.getElementById('tailor-records');
 
     tailorRecordContainer.innerHTML = '';
 
-    const tailorRecords = await fetch('./../api/read-tailor-records.php').then((res) => res.json());
+    const tailorRecords = await fetch(`./../api/read-tailor-records.php?search=%${search}%`).then((res) => res.json());
 
-    if (!tailorRecords) {
+    if (!tailorRecords || Array.isArray(tailorRecords) && tailorRecords.length === 0) {
       return tailorRecordContainer.innerHTML = '<tr><td colspan="6">ไม่มีข้อมูล</td></tr>';
     } else if (Array.isArray(tailorRecords) && tailorRecords.length > 0) {
       tailorRecords.forEach((record, index) => {
