@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 20, 2025 at 10:00 AM
+-- Generation Time: Mar 01, 2025 at 07:03 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 7.4.33
 
@@ -227,6 +227,34 @@ CREATE TABLE `stock_detail` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tailor`
+--
+
+CREATE TABLE `tailor` (
+  `id` int(11) NOT NULL,
+  `name` varchar(256) NOT NULL,
+  `address` varchar(256) DEFAULT NULL,
+  `phone_number` varchar(256) DEFAULT NULL,
+  `created_at` date NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tailor_record`
+--
+
+CREATE TABLE `tailor_record` (
+  `id` int(11) NOT NULL,
+  `tailor_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `created_at` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `taka`
 --
 
@@ -377,6 +405,18 @@ ALTER TABLE `stock2`
   ADD UNIQUE KEY `product_id` (`product_id`) USING HASH;
 
 --
+-- Indexes for table `tailor`
+--
+ALTER TABLE `tailor`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tailor_record`
+--
+ALTER TABLE `tailor_record`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `taka`
 --
 ALTER TABLE `taka`
@@ -482,6 +522,18 @@ ALTER TABLE `sall_detail`
 --
 ALTER TABLE `stock`
   MODIFY `stock_id` int(10) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `tailor`
+--
+ALTER TABLE `tailor`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `tailor_record`
+--
+ALTER TABLE `tailor_record`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `taka`
