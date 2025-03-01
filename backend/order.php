@@ -56,7 +56,7 @@ include("head.php");
       $status = $_GET["status"];
       $status_sql = "";
       if ($status == "0") {
-        $status_sql = "`payments`.pay_status=0";
+        $status_sql = "AND `payments`.pay_status=0";
       } else if ($status == "1") {
         $status_sql = "AND `payments`.pay_status=1";
       }
