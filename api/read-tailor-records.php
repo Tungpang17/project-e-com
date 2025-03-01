@@ -4,7 +4,17 @@ include './../backend/conf/mariadb.php';
 $search = $_GET['search'] ?? '%%';
 
 $sql =
-  "SELECT * FROM `tailor_record`
+  "SELECT 
+    `tailor_record`.`id`,
+    `tailor_record`.`tailor_id`,
+    `tailor_record`.`product_id`,
+    `tailor_record`.`quantity`,
+    `tailor_record`.`created_at`,
+    `tailor`.`id` as `tailor_id`,
+    `tailor`.`name`,
+    `product`.`product_id`,
+    `product`.`Product_name`
+   FROM `tailor_record`
   LEFT JOIN `tailor` ON `tailor_record`.`tailor_id` = `tailor`.`id`
   LEFT JOIN `product` ON `tailor_record`.`product_id` = `product`.`product_id`
   WHERE `tailor`.`name` LIKE ?

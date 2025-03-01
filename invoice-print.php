@@ -1,7 +1,11 @@
 <?php
 include("backend/conf/mariadb.php");
 include("backend/function.php");
-$sql = "SELECT * FROM `orders` 
+$sql =
+  "SELECT 
+  `orders`.*, 
+  `member`.*
+  FROM `orders` 
 LEFT JOIN `payments` ON `orders`.`order_id`=`payments`.`order_id`
 LEFT JOIN `member` ON `orders`.`m_id`=`member`.`m_id`
 WHERE `orders`.`order_id`='" . $_GET["order_id"] . "'";
@@ -73,9 +77,9 @@ $re_sall = mysqli_fetch_assoc($que);
           </div>
           <!-- /.col -->
           <div class="col-sm-5">
-            ถึง คุณpp
-            <address style="font-size: 20"> 
-              <strong><?php echo $re_sall["m_fullname"]; ?> <?php echo $re_sall["pay_address"]; ?></strong><br>
+            ถึง
+            <address style="font-size: 20">
+              <strong><?php echo $re_sall["m_fullname"]; ?> <?php echo $re_sall["address"]; ?></strong><br>
             </address>
           </div>
         </div>
@@ -165,9 +169,9 @@ WHERE `order_id`='" . $_GET["order_id"] . "'";
               </center>
               </th>
               </tr>
-                  <button id="print-button" class="d-print-none btn btn-primary ">
-                    พิมพ์
-                  </button>
+              <button id="print-button" class="d-print-none btn btn-primary ">
+                พิมพ์
+              </button>
             </div>
           </div>
           <!-- /.col -->
