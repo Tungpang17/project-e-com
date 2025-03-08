@@ -97,7 +97,7 @@ include("head.php");
           <td><?php echo $re["order_tatal"] ?></td>
           <td><?php echo $re["order_date"] ?></td>
           <td>
-            <?php echo $re["pay_status"] == 0 ? 'ยังไม่ได้ชำระเงิน' :( $re["pay_status"] == 1 ? 'ชำระเงินแล้ว' : 'ไม่ทราบสถานะ' )?>
+            <?php echo $re["pay_status"] == 0 ? 'ยังไม่ได้ชำระเงิน' : ($re["pay_status"] == 1 ? 'ชำระเงินแล้ว' : 'ไม่ทราบสถานะ') ?>
           </td>
 
           <!-- <td><button type="button" class="btn btn-Warning" style="font-size: 14" 
