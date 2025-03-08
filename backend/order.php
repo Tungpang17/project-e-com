@@ -99,6 +99,7 @@ include("head.php");
           <td>
             <?php echo $re["pay_status"] == 0 ? 'ยังไม่ได้ชำระเงิน' : ($re["pay_status"] == 1 ? 'ชำระเงินแล้ว' : 'ไม่ทราบสถานะ') ?>
           </td>
+          
 
           <!-- <td><button type="button" class="btn btn-Warning" style="font-size: 14" 
             data-toggle="modal" data-target="#staticBackdrop" onmousedown="form1.product_id.value='<?php echo $re["product_id"]; ?>';form1.Product_name.value='<?php echo $re["Product_name"]; ?>';form1.qty.value='<?php echo $re["qty"]; ?>'">

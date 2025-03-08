@@ -46,7 +46,7 @@ while($re=mysqli_fetch_assoc($que)){
  <tr>
             <td><?php echo $re["pay_id"];?></td>
             <td><?php echo $re["order_id"];?></td>
-            <td><?php echo $re["m_fullname"];?></td>
+            <td><?php echo $re["referId"];?></td>
             <td><?php echo $re["money"];?></td>
             <td><?php echo $re["datetime"];?></td>
             <td><img src="img/payment/<?php echo $re["pay_file"];?>" alt="..." class="img-thumbnail" width="300px"></td>
