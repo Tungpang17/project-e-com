@@ -132,7 +132,7 @@ $thai_month = $thai_months[(int)$month];
         <thead>
             <tr>
                 <th>วันที่</th>
-                <th>รายการ</th>
+                <th>รายการสินค้า</th>
                 <th>รายรับ</th>
                 <th>รายจ่าย</th>
                 <th>คงเหลือ</th>

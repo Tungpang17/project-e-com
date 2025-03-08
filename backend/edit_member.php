@@ -26,6 +26,7 @@
              <th scope="col">รหัสสมาชิก</th>
              <th scope="col">ชื่อ</th>
              <th scope="col">เบอร์โทร</th>
+             <th scope="col">วันที่เป็นสมาชิก</th>
            </tr>
          </thead>
 
@@ -83,6 +84,17 @@
                <label class="col-sm-3 col-form-label" style="font-size: 20px">เบอร์โทร:</label>
                <div class="col-sm-7">
                  <input class="form-control" type="text" placeholder="ใส่เบอร์โทร" name="m_phone" id="m_phone">
+               </div>
+             </div>
+           </div>
+
+             <div class="mb-3 row">
+               <label class="col-sm-3 col-form-label" style="font-size: 20px">สิทธิ์การใช้งาน:</label>
+               <div class="col-sm-7">
+                 <select id="revoked" name="revoked">
+                  <option value="0">เปิดการใช้งาน</option>
+                  <option value="1">ปิดการใช้งาน</option>
+                 </select>
                </div>
              </div>
            </div>
@@ -284,7 +296,7 @@
          for (var i = 0; i < obj.length; i++) {
 
 
-           $("#tbody1").html($("#tbody1").html() + '<tr onclick="show_click(' + i + ')" style="cursor:pointer"><th scope="row">' + (i + 1) + '</th><td>' + obj[i].m_id + '</td><td>' + obj[i].m_fullname + '</td><td>' + obj[i].m_phone + '</td></tr>');
+           $("#tbody1").html($("#tbody1").html() + '<tr onclick="show_click(' + i + ')" style="cursor:pointer"><th scope="row">' + (i + 1) + '</th><td>' + obj[i].m_id + '</td><td>' + obj[i].m_fullname + '</td><td>' + obj[i].m_phone + '</td><td>' + obj[i].m_datetime + '</td></tr>');
 
 
 
@@ -315,6 +327,7 @@
        $("#m_fullname").val(obj[id].m_fullname);
        $("#address").val(obj[id].address);
        $("#m_phone").val(obj[id].m_phone);
+       $("#revoked").val(obj[id].revoked)
 
      }
 

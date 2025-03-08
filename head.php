@@ -97,15 +97,18 @@ $(function(){
         <li class="nav-item">
           <a href="order.php" class="nav-link">การสั่งซื้อของฉัน</a>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a href="pomotion.php" class="nav-link">สินค้าขายดี5อันดับ</a>
-        </li>
+        </li> -->
         <li class="nav-item">
-          <a href="payments.php" class="nav-link">การแจ้งชำระเงิน</a>
+          <a href="payments.php" class="nav-link">รายการการสั่งซื้อ</a>
         </li>
         <li class="nav-item">
           <a href="transport.php" class="nav-link">การจัดส่งสินค้า</a>
         </li>
+        <!-- <li class="nav-item">
+          <a href="transport.php" class="nav-link">ประวัติการสั่งซื้อ</a>
+        </li> -->
         <!-- <li class="nav-item dropdown btn-group">
           <a class="nav-link dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More info</a>
           <div class="dropdown-menu dropdown" aria-labelledby="dropdownMenu1">
@@ -170,7 +173,8 @@ $(function(){
         <h4>ผู้เข้าใช้งาน : <?php echo $_SESSION["otop"]["m_fullname"];?></h4>
         <br>
     <form id="form1">
-    <a href="edit-register.php"><button type="button" class="btn btn-secondary">แก้ไขข้อมูลส่วนตัว</button></a>
+    <a href="edit-register.php"><button type="button" class="btn btn-secondary">แก้ไข้ข้อมูลส่วนตัว</button></a>
+        <a href="logout.php"><button type="button" class="btn btn-secondary">ประวัติการสั่งซื้อ</button></a>
         <a href="logout.php"><button type="button" class="btn btn-secondary">ออกจากระบบ</button></a>
         </form>
       </div>

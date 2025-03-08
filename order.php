@@ -16,11 +16,11 @@ include("head.php");
   <table class="table">
   <thead>
     <tr>
-      <th scope="col">#</th>
-      <th scope="col">วันเวลาสั่งซื้อ</th>
+      <th scope="col">ลำดับ</th>
+      <th scope="col">วันที่สั่งซื้อ</th>
       <th scope="col">ราคารวม</th>
       <th scope="col">สถานะ</th>
-      <th scope="col"></th>
+      <!-- <th scope="col"></th> -->
  
       <th scope="col"></th>
     </tr>
@@ -63,7 +63,7 @@ include("head.php");
       </td>
       <td>
         <a href="invoice-print.php?order_id=<?php echo $re["order_id"] ?>">
-        <button>พิมพ์ใบเสร็จ</button>
+        <button>พิมพ์ใบสั่งซื้อ</button>
         </a>
       </td>
     </tr>

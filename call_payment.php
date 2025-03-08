@@ -36,4 +36,6 @@ function add_pic(){
             echo '{"status":"1"}';
         }
 
+    echo mysqli_error($con);
+
 ?>

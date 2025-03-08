@@ -35,7 +35,7 @@ LEFT JOIN `product` ON `taka`.`product_id`=`product`.`product_id`
     <table class="table">
       <thead>
         <tr>
-          <th scope="col">#</th>
+          <th scope="col">ลำดับ</th>
           <th scope="col">รายการสินค้า</th>
           <th scope="col">จำนวน</th>
           <th scope="col">ราคา</th>
@@ -63,7 +63,7 @@ LEFT JOIN `product` ON `taka`.`product_id`=`product`.`product_id`
               <td><input type="number" class="form-control" value="<?php echo $re["amount"]; ?>" style="width:100px" name="amount"></td>
               <td><?php echo $re["Product_Price"]; ?></td>
               <td><?php echo $re["Product_Price"] * $re["amount"]; ?></td>
-              <td><a href="del_taka.php?id=<?php echo $re["k_id"]; ?>"><button type="button" class="btn btn-danger">ลบ</button></a></td>
+              <td><button type="button" class="btn btn-danger" onclick="deleteItem(<?php echo $re["k_id"]; ?>)">ลบ</button></td>
             </tr>
           </form>
         <?php } ?>
@@ -98,6 +98,14 @@ LEFT JOIN `product` ON `taka`.`product_id`=`product`.`product_id`
 <!-- /.Main layout -->
 
 </main>
+
+<script>
+  function deleteItem(id) {
+    if (confirm('ยืนยันการลบข้อมูล')) {
+      window.open('del_taka.php?id=' + id)
+    }
+  }
+  </script>
 
 <?php
 include("foot.php");

@@ -22,7 +22,7 @@ include("head.php");
   <table class="table">
   <thead>
     <tr>
-      <th scope="col">#</th>
+      <th scope="col">ลำดับ</th>
       <th scope="col">ภาพ</th>
       <th scope="col">รายการสินค้า</th>
       <th scope="col">จำนวน</th>

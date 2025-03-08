@@ -24,13 +24,32 @@
       
       <th scope="col">ใบสั่งซื้อสินค้า</th>
       <th scope="col">ชื่อลูกค้า</th>
-      <!-- <th scope="col">จำนวน</th> -->
-      <th scope="col">วัน/เดือน/ปี/ที่สั่งซื้อ</th>
+      <th scope="col">ราคา</th>
+      <th scope="col">วัน/เดือน/ปี/ที่สั่งซื้อ เวลา</th>
+      <!-- <th scope="col">เวลา</th> -->
       
     </tr>
   </thead>
-
   <tbody id="tbody1">
+      <?php
+      $sql = "SELECT * FROM payments
+LEFT JOIN orders ON orders.`order_id` = payments.`order_id`
+LEFT JOIN member ON member.`m_id` = orders.`m_id`";
+
+      $que = mysqli_query($con, $sql);
+      while ($re = mysqli_fetch_assoc($que)) {
+
+        ?>
+        <tr>
+
+          <td><?php echo $re["pay_id"]; ?></td>
+          <td><?php echo $re["m_fullname"]; ?></td>
+          <td><?php echo $re["money"]; ?></td>
+          <td><?php echo $re["datetime"]; ?></td>
+        </tr>
+
+      <?php } ?>
+    </tbody>
     <?php
     $sql="SELECT * FROM `payment.php` WHERE 1 ";
 

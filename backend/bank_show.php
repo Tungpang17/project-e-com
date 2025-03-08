@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>จัดการบัญชีร้านค้า</title>
+    <title>สถิติการทอผ้าของสมาชิกกลุ่มทอผ้า</title>
     <link href="boostrap/css/bootstrap.min.css" rel="stylesheet" />
     <link href="css/styles.css" rel="stylesheet" />
     <script src="boostrap/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
@@ -20,7 +20,7 @@
             <div class="card mb-4">
                 <div class="card-header">
                     <i class="fas fa-table me-1"></i>
-                    <h4>เรียกดูรายการบัญชี</h4>
+                    <h4>เรียกการทอผ้า</h4>
                 </div><br>
                 <div class="card-body">
                     <form action="bank_rs_pdf.php" method="GET">

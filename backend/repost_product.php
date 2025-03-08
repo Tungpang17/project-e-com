@@ -10,7 +10,7 @@ include("head.php");
 
 <div class="container">
  <h3><img src="img/ru1.png" width="50" height="50">ร้านค้าวิสาหกิจชุมชนบ้านพวนผ้ามัดหมี่</h3>
-  <h3>รายงานข้อมูลสินค้า <button type="button" class="btn btn-light" onclick="print();" id="hid">
+  <h3>รายงานข้อมูลสถิติการทอผ้าของสมาชิกกลุ่มทอผ้า <button type="button" class="btn btn-light" onclick="print();" id="hid">
 
   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-printer-fill" viewBox="0 0 16 16">
   <path d="M5 1a2 2 0 0 0-2 2v1h10V3a2 2 0 0 0-2-2H5zm6 8H5a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1z"/>

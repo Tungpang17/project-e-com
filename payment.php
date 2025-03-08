@@ -34,17 +34,17 @@ include("head.php");
             <form id="form_p">
                 <input type="hidden" name="order_id" value="<?php echo $_GET["order_id"];?>">
                 <div class="mb-3">
-              <label for="exampleFormControlInput1" class="form-label">เลขที่อ้างอิง : </label>
-              <input type="text" class="form-control" id="referId" name="referId"  placeholder="เลขที่อ้างอิง xxxxxxxxxxxxxx">
+              <label for="exampleFormControlInput1" class="form-label">ชื่อผู้ชำระ : </label>
+              <input type="text" class="form-control" id="referId" name="referId"  placeholder="ชื่อผู้ชำระ">
             </div>
             <div class="mb-3">
               <label for="exampleFormControlInput1" class="form-label">จำนวนเงิน</label>
               <input type="number" class="form-control" id="money"   placeholder="เช่น 1200" value="<?php echo $re["order_tatal"];?>" readonly="readonly">
             </div>
-            <div class="mb-3">
+            <!-- <div class="mb-3">
               <label for="exampleFormControlInput1" class="form-label">ค่าขนส่ง</label>
               <input type="number" class="form-control" id="money" name="money" value="50" readonly="readonly">
-            </div>
+            </div> -->
             <div class="mb-3">
               <label for="exampleFormControlInput1" class="form-label">รวมยอดทั้งสิ้น</label>
               <input type="number" class="form-control" id="money" name="money"   value="<?php echo $re["order_tatal"]+50;?>" readonly="readonly">

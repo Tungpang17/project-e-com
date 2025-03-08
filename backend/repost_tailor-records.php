@@ -45,7 +45,7 @@ include("conf/mariadb.php");
       
       <td><?php echo $re["id"];?></td>
       <td><?php echo $re["name"];?></td>
-      <td><?php echo $re["จำนวน"];?></td>
+      <td><?php echo $re["quantity"];?></td>
       <td><?php echo $re["created_at"];?></td>
     </tr>
 

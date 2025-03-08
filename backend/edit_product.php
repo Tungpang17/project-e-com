@@ -40,6 +40,7 @@ include("head.php");
                          <th scope="col">รายละเอียดสินค้า</th>
                          <th scope="col">ราคา</th>
                          <th scope="col">จำนวน</th>
+                         <th scope="col">ยอดคงเหลือ</th>
                      </tr>
                  </thead>
 
