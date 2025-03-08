@@ -7,6 +7,7 @@ $sql="UPDATE `member` SET
 `m_email`='".$_POST["m_email"]."',
 `address`='".$_POST["address"]."',
 `m_pass`='".$_POST["m_pass"]."',
+`revoked`='".$_POST["revoked"]."',
 `m_datetime`='".$_POST["m_datetime"]."'
 WHERE `m_id`='".$_POST["m_id"]."'";
 $que=mysqli_query($con,$sql);

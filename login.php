@@ -8,6 +8,8 @@
         type='text/css'>
     <link href="//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script></head>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
     <div class="widget-wrapper wow fadeIn" data-wow-delay="0.4s">
         <h4>เข้าสู่ระบบ :</h4>
         <br>

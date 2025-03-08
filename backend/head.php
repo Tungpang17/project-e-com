@@ -85,6 +85,11 @@ $qty = mysqli_num_rows($que);
                 echo "active"; ?>" href="edit_user.php">จัดการข้อมูลพนักงาน</a>
             </li>
             <li class="nav-item">
+            <li class="nav-item">
+
+            <a class="nav-link <?php if (basename($_SERVER['PHP_SELF']) == 'edit_member.php')
+          echo "active"; ?>" href="edit_member.php">จัดการข้อมูลสมาชิก</a>
+          </li>
 
               <a class="nav-link <?php if (basename($_SERVER['PHP_SELF']) == 'edit_member.php')
                 echo "active"; ?>" href="edit_member.php">จัดการข้อมูลสมาชิก</a>

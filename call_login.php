@@ -15,7 +15,7 @@ function getIP(){
 // การเรียกใช้ IP
 $visitorIP = getIP();
 
-$sql="SELECT * FROM `member` WHERE `m_email`='".$_POST["user"]."' AND `m_pass`='".$_POST["pass"]."'";
+$sql="SELECT * FROM `member` WHERE `m_email`='".$_POST["user"]."' AND `m_pass`='".$_POST["pass"]."' AND revoked = 0";
 $que=mysqli_query($con,$sql);
 if(mysqli_num_rows($que)!=0){    
     $re=mysqli_fetch_assoc($que);

@@ -29,6 +29,7 @@ while ($row = mysqli_fetch_assoc($result)) {
             <thead>
                 <tr>
 
+                <th>รูปภาพ</th>
                     <th>ID</th>
                     <th>ชื่อสมาชิก</th>
                     <th>ที่อยู่</th>
@@ -197,7 +198,7 @@ while ($row = mysqli_fetch_assoc($result)) {
 
                     row.innerHTML = `
                         <td>
-                            <img src="../public/images/uploads/tailors/${d.id}.jpg" alt="" style="width: 64px; height: 64px;">
+                            <img src="./../public/images/uploads/tailors/${d.id}.jpg" alt="" style="width: 64px; height: 64px;">
                         </td>
                          <td>
                             ${d.id}

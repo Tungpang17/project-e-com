@@ -9,7 +9,7 @@ $tailor_result = $con->query($tailor_sql);
 while ($row = $tailor_result->fetch_assoc()) {
   $tailors[] = $row;
 }
-$product_sql = 'SELECT * FROM product';
+$product_sql = 'SELECT * FROM product WHERE product.raw = 1';
 
 $product_result = $con->query($product_sql);
 while ($row = $product_result->fetch_assoc()) {

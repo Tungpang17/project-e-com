@@ -47,7 +47,7 @@ $re_sall = mysqli_fetch_assoc($que);
         <div class="row">
           <div class="col-12">
             <h2 class="page-header">
-              ใบเสร็จรับเงิน<br>
+              ใบสั่งซื้อ<br>
               <img src="backend/img/ru1.png" width="85" height="85"></i>ร้านค้าสหกิจชุมชนบ้านพวนผ้ามัดหมี่
               <small class="float-right">Date: <?php echo changdate($re_sall["order_date"]); ?></small>
 
@@ -140,7 +140,7 @@ WHERE `order_id`='" . $_GET["order_id"] . "'";
                   <td></td>
                   <td></td>
                   <td></td>
-                  <td>ราคารวม :</td>
+                  <td>ราคารวมสุทธิ์:</td>
                   <td><?php echo $sum2 + 50; ?> บาท</td>
                 </tr>
 

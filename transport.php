@@ -21,6 +21,7 @@ $result = $con->query($sql);
     <table class="table">
     <thead>
         <tr>
+            
             <th>ชื่อสินค้า</th>
             <th>เลขพัสดุ</th>
             <th>วันที่จัดส่ง</th>
