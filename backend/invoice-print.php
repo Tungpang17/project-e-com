@@ -81,7 +81,7 @@ $re_sall = mysqli_fetch_assoc($que);
           <div class="col-sm-5">
             ถึง
             <address style="font-size: 20">
-              <strong></strong><br>
+              <strong><?php echo $re_sall["m_fullname"]; ?> <?php echo $re_sall["address"]; ?></strong><br>
             </address>
           </div>
         </div>

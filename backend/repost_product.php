@@ -16,7 +16,15 @@ include("head.php");
   <path d="M5 1a2 2 0 0 0-2 2v1h10V3a2 2 0 0 0-2-2H5zm6 8H5a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1z"/>
   <path d="M0 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-1v-2a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v2H2a2 2 0 0 1-2-2V7zm2.5 1a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"/>
   </svg> พิมพ์</button></h3>
-  
+  <div>
+    <form id="date-form" action="order.php" method="get">
+      <label for="start_date">เริ่มต้น</label>
+      <input type="date" id="start_date" name="start_date" value="<?php echo $_GET["start_date"]; ?>">
+      <label for="end_date">สิ้นสุด</label>
+      <input type="date" id="end_date" name="end_date" value="<?php echo $_GET["end_date"]; ?>">
+      <button type="submit">ค้นหา</button>
+    </form>
+  </div>
 <div id="button1">
 
 </div>	
@@ -30,6 +38,7 @@ include("head.php");
       <th scope="col">รายระเอียด</th>
       <th scope="col">ราคา</th>
       <th scope="col">จำนวน</th>
+      <th scope="col">วันที่สั่งซื้อ</th>
     </tr>
   </thead>
 

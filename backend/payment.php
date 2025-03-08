@@ -26,7 +26,7 @@ include("head.php");
       <th scope="col">เลขใบสั่งซื้อ</th>
       <th scope="col">ชื่อผู้แจ้งชำระ</th>
       <th scope="col">จำนวนเงิน</th>
-      <th scope="col">วันเวลาทำการ</th>
+      <th scope="col">วันทำการ</th>
       <th scope="col">หลักฐานแนบ</th>
       <th scope="col">การตรวจสอบ</th>
     </tr>
@@ -46,7 +46,7 @@ while($re=mysqli_fetch_assoc($que)){
  <tr>
             <td><?php echo $re["pay_id"];?></td>
             <td><?php echo $re["order_id"];?></td>
-            <td><?php echo $re["name"];?></td>
+            <td><?php echo $re["m_fullname"];?></td>
             <td><?php echo $re["money"];?></td>
             <td><?php echo $re["datetime"];?></td>
             <td><img src="img/payment/<?php echo $re["pay_file"];?>" alt="..." class="img-thumbnail" width="300px"></td>

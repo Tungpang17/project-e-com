@@ -20,8 +20,8 @@ include("head.php");
 
   <div>
     <button type="button" class="btn btn-primary" onclick="setStatus()">ทั้งหมด</button>
-    <button type="button" class="btn btn-secondary" onclick="setStatus(0)">ยังไม่ชำระเงิน</button>
-    <button type="button" class="btn btn-success" onclick="setStatus(1)">ชำระเงินแล้ว</button>
+    <button type="button" class="btn btn-secondary" onclick="setStatus(0)">จัดส่งแล้ว</button>
+    <button type="button" class="btn btn-success" onclick="setStatus(1)">ยังไม่ได้จัดส่ง</button>
   </div>
 
   <div>
@@ -39,6 +39,7 @@ include("head.php");
       <tr>
 
         <th scope="col">เลขใบสั่งซื้อ</th>
+        <th scope="col">ชื่อลูกค้า</th>
         <th scope="col">บริษัทขนส่ง</th>
         <th scope="col">เลข Tracking</th>
         <th scope="col">ที่อยู่</th>
@@ -55,7 +56,7 @@ include("head.php");
 
 
       <?php
-      $sql = "SELECT payments.*,transport.tra_id,transport.tra_name,transport.tra_track,transport.tra_date,transport.tra_time,transport.tra_status, member.address, member.m_phone FROM payments 
+      $sql = "SELECT payments.*,transport.tra_id,transport.tra_name,transport.tra_track,transport.tra_date,transport.tra_time,transport.tra_status,m_fullname,member.address, member.m_phone FROM payments 
 LEFT JOIN transport ON payments.`order_id`=`transport`.`order_id`
 LEFT JOIN orders ON orders.order_id = payments.order_id
 LEFT JOIN member ON member.m_id =  orders.m_id
@@ -66,6 +67,7 @@ WHERE payments.pay_status=1
       ?>
         <tr>
           <td><?php echo $re["order_id"]; ?></td>
+          <td><?php echo $re["m_fullname"]; ?></td>
           <td>
             <?php echo $re["tra_name"] != "" ? $re["tra_name"] : '<span class="badge badge-danger">ยังไม่จัดส่ง</span>'; ?>
           </td>
