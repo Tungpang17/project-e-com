@@ -19,19 +19,20 @@ include("head.php");
   </div>
 
   <div>
-    <button type="button" class="btn btn-primary" onclick="setStatus()">ทั้งหมด</button>
-    <button type="button" class="btn btn-secondary" onclick="setStatus(0)">จัดส่งแล้ว</button>
-    <button type="button" class="btn btn-success" onclick="setStatus(1)">ยังไม่ได้จัดส่ง</button>
+    <button type="button" class="btn btn-secondary" onclick="setStatus(1)">จัดส่งแล้ว</button>
+    <button type="button" class="btn btn-success" onclick="setStatus(0)">ยังไม่ได้จัดส่ง</button>
   </div>
 
   <div>
-    <form id="date-form" action="order.php" method="get">
-      <label for="start_date">เริ่มต้น</label>
-      <input type="date" id="start_date" name="start_date" value="<?php echo $_GET["start_date"]; ?>">
-      <label for="end_date">สิ้นสุด</label>
-      <input type="date" id="end_date" name="end_date" value="<?php echo $_GET["end_date"]; ?>">
-      <button type="submit">ค้นหา</button>
-    </form>
+    <?php if ($_GET['status'] !== '0') { ?>
+      <form id="date-form" action="transport.php?status=1" method="get">
+        <label for="start_date">เริ่มต้น</label>
+        <input type="date" id="start_date" name="start_date" value="<?php echo $_GET["start_date"] ?? '2025-01-01'; ?>">
+        <label for="end_date">สิ้นสุด</label>
+        <input type="date" id="end_date" name="end_date" value="<?php echo $_GET["end_date"] ?? date('Y-m-d'); ?>">
+        <button type="submit">ค้นหา</button>
+      </form>
+    <?php } ?>
   </div>
   <br>
   <table id="example" class="table" class="table table-striped table-bordered" style="width:100%">
@@ -56,15 +57,35 @@ include("head.php");
 
 
       <?php
+      $start_date = $_GET['start_date'];
+      $end_date = $_GET['end_date'];
+
+      $start_date = validateDate($start_date) ? $start_date : '2000-01-01';
+      $end_date = validateDate($end_date) ? $end_date : date('Y-m-d');
+
+      $date_sql = $_GET['status'] !== '0' ? "AND (transport.tra_date) BETWEEN '$start_date' AND '$end_date'" : '';
+
+      function validateDate($date, $format = 'Y-m-d')
+      {
+        $d = DateTime::createFromFormat($format, $date);
+        return $d && $d->format($format) == $date;
+      }
+
+      $status_sql = $_GET['status'] === '0' ? 'AND transport.tra_status IS NULL' : ($_GET['status'] === '1' ? 'AND transport.tra_status = 0' : '');
+
+
       $sql = "SELECT payments.*,transport.tra_id,transport.tra_name,transport.tra_track,transport.tra_date,transport.tra_time,transport.tra_status,m_fullname,member.address, member.m_phone FROM payments 
 LEFT JOIN transport ON payments.`order_id`=`transport`.`order_id`
 LEFT JOIN orders ON orders.order_id = payments.order_id
 LEFT JOIN member ON member.m_id =  orders.m_id
 WHERE payments.pay_status=1
--- LEFT JOIN stock2 ON product.`product_id`=`stock2`.`product_id`";
+$status_sql
+$date_sql
+ORDER BY transport.tra_status DESC";
       $que = mysqli_query($con, $sql);
+
       while ($re = mysqli_fetch_assoc($que)) {
-      ?>
+        ?>
         <tr>
           <td><?php echo $re["order_id"]; ?></td>
           <td><?php echo $re["m_fullname"]; ?></td>
@@ -90,7 +111,7 @@ WHERE payments.pay_status=1
 
             <?php
             if ($re["tra_id"] == "") {
-            ?>
+              ?>
               <span class="badge badge-secondary">รอการจัดส่ง</span>
             <?php } elseif ($re["tra_status"] == 0) { ?>
               <span class="badge badge-warning">อยู่ระหว่างขนส่ง</span>
@@ -109,7 +130,8 @@ WHERE payments.pay_status=1
             <?php } ?>
 
             <?php if ($re["tra_id"] && $re["tra_status"] == 0) { ?>
-              <button type="button" class="btn btn-danger" onclick="deleteItem(<?php echo $re["tra_id"]; ?>)">ยกเลิก</button>
+              <button type="button" class="btn btn-danger"
+                onclick="deleteItem(<?php echo $re["tra_id"]; ?>)">ยกเลิก</button>
             <?php } ?>
           </td>
         </tr>
@@ -190,7 +212,7 @@ WHERE payments.pay_status=1
       cache: false,
       contentType: false,
       processData: false
-    }).done(function(data) {
+    }).done(function (data) {
       try {
         var obj = JSON.parse(data);
         if (obj.status == 1) {
@@ -239,6 +261,10 @@ WHERE payments.pay_status=1
     if (confirm('ยืนยันการลบข้อมูล')) {
       window.open('delete_transport.php?id=' + id, '_parent')
     }
+  }
+
+  function setStatus(status = '') {
+    window.location.href = 'transport.php?status=' + status;
   }
 </script>
 
