@@ -56,7 +56,7 @@ include("head.php");
                 <span class="badge badge-warning">ชำระเงินสำเร็จ รอการจัดส่ง</span>
               <?php } elseif ($re["pay_status"] == 1 && $re["tra_track"] != "" && $re["tra_status"] != 1) { ?>
                 <span class="badge badge-info">อยู่ระหว่างขนส่ง</span><br> Tracking :
-                <?php echo $re["tra_track"] . '<br><a href="https://ems.thaiware.com/' . $re["tra_track"] . '" target="_blank"><span class="badge badge-secondary">ตรวจสอบ</span></a>'; ?>
+                <?php echo $re["tra_track"] .  $re["tra_track"] ; ?>
               <?php } else { ?>
                 ยืนยันได้รับสินค้าแล้ว
               <?php } ?>
@@ -65,6 +65,7 @@ include("head.php");
                 <a href="update_transport.php?tra_id=<?php echo $re["tra_id"]; ?>"><button type="button"
                     class="btn btn-primary">หากได้รับสินค้าแล้ว โปรดคลิก</button></a>
               <?php } ?>
+              
             </td>
             <td>
               <a href="invoice-print.php?order_id=<?php echo $re["order_id"] ?>">

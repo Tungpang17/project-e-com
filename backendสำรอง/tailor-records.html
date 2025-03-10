@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="th">
+  <head>
+    <meta charset="UTF-8" />
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="../assets/css/main.css" />
+    <style>
+      *, ::before, ::after {
+        border-color: var(--color-gray-400);
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="max-w-5xl p-4 mx-auto space-y-2">
+      <h1 class="font-semibold text-2xl">รายการทอผ้า</h1>
+
+      <div>
+        <div class="flex gap-2 ">
+          <input
+            id="search"
+            type="text"
+            class="w-xs px-2.5 py-1.5 border border-gray-400 rounded"
+            placeholder="ค้นหา"
+          />
+
+          <button
+            class="px-2.5 py-1.5 border rounded cursor-pointer"
+            onclick="fetchAndRender()"
+          >
+            ค้นหา
+          </button>
+        </div>
+
+        <table class="w-full mt-4">
+          <thead>
+            <tr>
+              <th class="border">ลำดับ</th>
+              <th class="border">สมาชิก</th>
+              <th class="border">สินค้า</th>
+              <th class="border">จำนวน</th>
+            </tr>
+          </thead>
+          <tbody id="tbody" />
+        </table>
+      </div>
+
+      <div>
+        <h2 class="font-semibold">เพิ่มรายการทอผ้า</h2>
+
+        <form id="form" >
+          <div class="space-y-2">
+            <div class="flex flex-col gap-1">
+              สมาชิก
+              <select
+                name="tailor_id"
+                class="px-2.5 py-1.5 border rounded"
+              >
+              </select>
+            </div>
+
+            <div class="flex flex-col gap-1">
+              สินค้า
+              <select
+                name="product_id"
+                class="px-2.5 py-1.5 border rounded"
+              >
+              </select>
+            </div>
+
+            <div class="flex flex-col gap-1">
+              จำนวน
+              <input
+                type="number"
+                name="quantity"
+                class="px-2.5 py-1.5 border rounded"
+              />
+            </div>
+
+            <button
+              type="submit"
+              class="px-2.5 py-1.5 bg-emerald-500 border rounded text-white"
+            >
+              เพิ่ม
+            </button>
+        </form>
+      </div>
+    </div>
+  </body>
+
+  <script>
+    async function fetchAndRender() {
+      const search = document.getElementById("search").value;
+
+      const data = await fetch(
+        `../api/read-tailor-records.php?search=${search}`
+      ).then((response) => response.json());
+
+      // Renders data
+      const container = document.getElementById("tbody");
+
+      container.innerHTML = "";
+
+      if (data.length === 0) {
+        const row = document.createElement("tr");
+        row.classList.add("border");
+        row.innerHTML = "<td class=\"p-4 text-center\" colspan='8'>ไม่พบข้อมูล</td>";
+        container.appendChild(row);
+      } else {
+        data.forEach((d) => {
+          const row = document.createElement("tr");
+          row.innerHtml = `<td>${d.id}</td><td>${d.name}</td><td>${d.Product_name}</td><td>${d.quantity}</td>`;
+          container.appendChild(row);
+        });
+      }
+    }
+
+    // Gets and sets tailor options.
+    fetch("../api/read-tailors.php").then((response) =>
+      response.json()
+    ).then((data) => {
+      const tailors = data;
+      const tailorSelect = document.querySelector("select[name='tailor_id']");
+      tailors.forEach((tailor) => {
+        const option = document.createElement("option");
+        option.value = tailor.id;
+        option.innerText = tailor.name;
+        tailorSelect.appendChild(option);
+      });
+    });
+
+    // Gets and sets product options.
+    fetch("../api/read-products.php").then((response) =>
+      response.json()
+    ).then((data) => {
+      const products = data;
+      const productSelect = document.querySelector("select[name='product_id']");
+      products.forEach((product) => {
+        const option = document.createElement("option");
+        option.value = product.product_id;
+        option.innerText = product.Product_name;
+        productSelect.appendChild(option);
+      });
+    });
+
+    fetchAndRender();
+  </script>
+</html>

@@ -53,15 +53,16 @@ while ($row = $result->fetch_assoc()) {
                     </td>
                     <td>
                         <a href="payment.php?order_id=<?php echo $row['order_id']; ?>" class="btn btn-success">แจ้งชำระเงิน</a>
+                        
                     </td>
                     <td>
-                     <?php 
+                    <?php 
                         if ($row["payment_status"] == "paid") {
                          echo '<span class="badge bg-success">ชำระเงินแล้ว</span>';
                         } else {
                          echo '<span class="badge bg-warning">รอชำระเงิน</span>';
-                    }
-    ?>
+                        }
+                    ?>
                     </td>
                     
                     
